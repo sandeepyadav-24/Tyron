@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import { FaLeaf } from "react-icons/fa";
 import { signInWithGoogle, signOut } from "@/lib/supabase";
 import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const { user, loading } = useAuth();
-  console.log(user);
+  const router = useRouter();
 
   // Handle scroll effect
   useEffect(() => {
@@ -22,7 +23,9 @@ const Navbar = () => {
 
   const handleSignIn = async () => {
     const { error } = await signInWithGoogle();
-    if (error) {
+    if (!error) {
+      router.push("/dashboard");
+    } else {
       console.error("Error signing in:", error);
     }
   };
@@ -78,7 +81,6 @@ const Navbar = () => {
             <>
               {user ? (
                 <div className="flex items-center space-x-4">
-                  <span className="text-sm">{user.email}</span>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     onClick={handleSignOut}

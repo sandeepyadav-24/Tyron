@@ -97,11 +97,11 @@ export const LandingPage = () => {
       color: "bg-gradient-to-br from-red-500 to-red-600",
       delay: 0,
       label: "Design Collection",
-      imageUrl: "/path-to-your-image.jpg",
     },
     {
       color: "bg-gradient-to-br from-blue-500 to-blue-600",
       delay: 0.1,
+
       label: "Art Series",
     },
     {
@@ -163,7 +163,6 @@ export const LandingPage = () => {
                     color={card.color}
                     delay={card.delay}
                     label={card.label}
-                    imageUrl={card.imageUrl}
                     index={index}
                   />
                 ))}
